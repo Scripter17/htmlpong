@@ -1,0 +1,24 @@
+body{
+	background-color:black;
+}
+.paddle{
+	display:inline-block;
+	background-color:white;
+	width:1em;
+	height:25%;
+}
+#paddle1{
+	position:absolute;
+	left:1em;
+}
+#paddle2{
+	position:absolute;
+	right:1em;
+}
+#ball{
+	position:absolute;
+	display:inline-block;
+	background-color:white;
+	width:1em;
+	height:1em;
+}
