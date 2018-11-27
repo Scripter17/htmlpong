@@ -1,5 +1,7 @@
 body{
 	background-color:black;
+	font-family:Courier;
+	user-select:none;
 }
 .paddle{
 	display:inline-block;
@@ -21,4 +23,33 @@ body{
 	background-color:white;
 	width:1em;
 	height:1em;
+	transform:translate(-50%,-50%);
+}
+#dashes{
+	position:absolute;
+	display:inline-block;
+	left:50%;
+	top:0;
+	bottom:0;
+	border:2px dashed white;
+	transform:translate(-50%,0);
+}
+.score{
+	position:absolute;
+	top:12.5%;
+	font-size:3em;
+	color:white;
+	transform:translate(-50%,0);
+}
+#score1{left:25%;}
+#score2{right:25%;}
+#winner{
+	margin:0;
+	display:inline-block;
+	position:absolute;
+	top:50%;
+	left:50%;
+	color:white;
+	transform:translate(-50%,-50%);
+	text-shadow:0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black;
 }

@@ -6,6 +6,10 @@ window.onload=function(){
 	window.down={87:false,83:false,38:false,40:false};
 	window.ballv=[];
 	window.ball=document.getElementById("ball");
+	window.speed=5;
+	window.points=[0,0];
+	window.finished=false;
+	window.winscore=10;
 	p1move();
 	p2move();
 	ballInit();
@@ -40,7 +44,7 @@ window.onkeyup=function(e){
 	}
 }
 function p1move(){
-	var top=parseInt(p1.style.top)+window.p1vel*3;
+	var top=parseInt(p1.style.top)+window.p1vel*window.speed;
 	var rect=p1.getBoundingClientRect();
 	top=Math.max(top,0);
 	top=Math.min(window.innerHeight-rect.height,top);
@@ -48,7 +52,7 @@ function p1move(){
 	requestAnimationFrame(p1move);
 }
 function p2move(){
-	var top=parseInt(p2.style.top)+window.p2vel*3;
+	var top=parseInt(p2.style.top)+window.p2vel*window.speed;
 	var rect=p2.getBoundingClientRect();
 	top=Math.max(top,0);
 	top=Math.min(window.innerHeight-rect.height,top);
@@ -71,7 +75,9 @@ function doBallStuff(){
 	var leftpre=left;
 	left=Math.min(window.innerWidth-ballRect.width,left);
 	left=Math.max(left,0);
-	if (leftpre!=left){
+	if (leftpre!=left){ // Point scored
+		window.points[left==0?1:0]++;
+		updatePoints();
 		ballInit();
 	} else {
 		window.ball.style.left=left+"px";
@@ -82,5 +88,15 @@ function doBallStuff(){
 		if (toppre!=top){ballv[1]*=-1}
 		window.ball.style.top=top+"px";
 	}
-	requestAnimationFrame(doBallStuff);
+	if (!window.finished){requestAnimationFrame(doBallStuff);}
+}
+function updatePoints(){
+	var score1=document.getElementById("score1");
+	var score2=document.getElementById("score2");
+	score1.innerHTML=window.points[0]
+	score2.innerHTML=window.points[1]
+	if (points.indexOf(window.winscore)!=-1){
+		window.finished=true;
+		document.getElementById("winner").innerHTML="Player "+(points.indexOf(window.winscore)+1)+" wins!";
+	}
 }
